@@ -3,12 +3,21 @@ repositories{
     flatDir {
         dirs 'libs'
     }
+	maven {
+		url "https://m2.convertigo.com"
+	}
+	/*
     maven {
         // Add iotize repository url
         url "http://repo.iotize.com/artifactory/gradle-release"
         allowInsecureProtocol = true
     }
+    */
 }
+/*
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+*/
 
 dependencies {
     // Kotlin
@@ -31,9 +40,56 @@ dependencies {
 
 }
 
+
 android {
     packagingOptions {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
 }
+
+/*
+publishing {
+	repositories {
+		maven {
+			url project.properties['c8o.m2.url']
+			credentials(AwsCredentials) {
+				accessKey project.properties['c8o.m2.ak']
+				secretKey project.properties['c8o.m2.sk']
+			}
+		}
+	}
+	publications {
+		iotizeClient (MavenPublication) {
+			groupId 'com.iotize.android'
+			artifactId 'iotize-client'
+			version '1.0.0-alpha.9'
+			artifact 'libs/iotize-client-1.0.0-alpha.9.aar'
+		}
+		iotizeCore (MavenPublication) {
+			groupId 'com.iotize.android'
+			artifactId 'iotize-core'
+			version '1.0.0-alpha.9'
+			artifact 'libs/iotize-core-1.0.0-alpha.9.aar'
+		}
+		iotizeDevice (MavenPublication) {
+			groupId 'com.iotize.android'
+			artifactId 'iotize-device'
+			version '1.0.0-alpha.9'
+			artifact 'libs/iotize-device-1.0.0-alpha.9.aar'
+		}
+		iotizeDeviceApi (MavenPublication) {
+			groupId 'com.iotize.android'
+			artifactId 'iotize-device-api'
+			version '1.0.0-alpha.9'
+			artifact 'libs/iotize-device-api-1.0.0-alpha.9.aar'
+		}
+		iotizeDeviceComNfc (MavenPublication) {
+			groupId 'com.iotize.android'
+			artifactId 'iotize-device-com-nfc'
+			version '1.0.0-alpha.9'
+			artifact 'libs/iotize-device-com-nfc-1.0.0-alpha.9.aar'
+		}
+	}
+}
+*/
